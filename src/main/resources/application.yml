@@ -1,0 +1,41 @@
+spring.mongodb.embedded.version: 5.0.0
+
+restClient:
+  moviesInfoUrl: http://localhost:8080/v1/movieInfos
+  reviewsUrl: http://localhost:8080/v1/reviews
+spring:
+  profiles:
+    active: local
+---
+spring:
+  config:
+    activate:
+      on-profile:
+        - local
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: MoviesDB
+---
+spring:
+  config:
+    activate:
+      on-profile:
+        - non-prod
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: MoviesDB
+---
+spring:
+  config:
+    activate:
+      on-profile:
+        - prod
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: MoviesDB
